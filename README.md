@@ -7,8 +7,8 @@ a TF Coil profile on a 2D XZ planar projection
 - uses branches on git to control software version and development
 - uses github actions to upload PyPi
 
-To install
+To install from this folder:
 ```bash
-pip install tf_coil_coordinator
+pip install e .
 ```
 
