@@ -4,7 +4,7 @@ from tf_coil_coordinator import find_points, thick_check,tup_check
 
 @pytest.mark.dtype
 def test_input_coordinates():
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         find_points(1,2,3)
 
 @pytest.mark.dtype
