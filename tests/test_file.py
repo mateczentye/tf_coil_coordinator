@@ -19,7 +19,7 @@ def test_input_thickness():
 
 @pytest.mark.length
 def test_tuple_length():
-    answer = find_points((0, 0, 0),(0,0),0)
+    answer = find_points((0, 0, 0),(0, 0), 0)
     assert answer == "Input tuples must be 2 element long - coordinate on XZ plane"
 
 @pytest.mark.length
