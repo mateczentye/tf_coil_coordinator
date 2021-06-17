@@ -17,12 +17,13 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
         raise TypeError("Invalid input - Coordinates must be a tuple")
 
     elif (thick_check(thickness)) == False:
-        print("Wrong data type, thickness must be an integer or a float value")
-        return "Invalid Input, thickness must be an integer or a float"
-
+        raise TypeError("Invalid input - Thickness must be a number")
+        
     elif len(lower_inner_coordinates) != 2 or len(mid_point_coordinates) != 2:
-        print("The input tuples are too long, please check you have given a 2D coordinate for each points")
-        return "Input tuples must be 2 element long - coordinate on XZ plane"
+        raise ValueError("The input tuples are too long or too short, they must be 2 element long")
+
+    elif lower_inner_coordinates[0] > mid_point_coordinates[0]:
+        raise ValueError("The middle point's x-coordinate must be larger than the lower inner point's x-coordinate")
 
 
     else:
@@ -48,8 +49,8 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
         p9 = (p2[0],p2[1]-thickness)
         p10 = (lower_x,lower_z-thickness)
 
-        ### Tuple holding the points that are being returned by the function
-        points = (p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)
+        ### List holding the points that are being returned by the function
+        points = [p1,p2,p3,p4,p5,p6,p7,p8,p9,p10]
 
         if test == True:
             print(points)
@@ -67,3 +68,4 @@ def thick_check(thickness):
     return check
     
 
+find_points((50,0), (100,100), 20, test=True)

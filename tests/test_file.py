@@ -9,13 +9,14 @@ def test_input_coordinates():
 
 @pytest.mark.dtype
 def test_input_thickness():
-    answer = find_points((0, 0), (0, 0), "asd")
-    assert answer == "Invalid Input, thickness must be an integer or a float"
+    with pytest.raises(TypeError):
+        find_points((0, 0), (0, 0), "asd")
 
 @pytest.mark.length
 def test_tuple_length():
-    answer = find_points((0, 0, 0),(0, 0), 0)
-    assert answer == "Input tuples must be 2 element long - coordinate on XZ plane"
+    with pytest.raises(ValueError):
+        find_points((0, 0, 0),(0, 0), 0)
+
 
 @pytest.mark.length
 def test_return_tuple():
@@ -41,3 +42,8 @@ def test_returned_values_for_coordinates():
                     (45.0, -25.0),
                     (40.0, -30.0),
                     (5.0, -30.0))
+
+@pytest.mark.value
+def test_check_x_coordinates():
+    with pytest.raises(ValueError):
+        find_points((50,50), (0,0), 5)
