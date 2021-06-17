@@ -1,19 +1,25 @@
 import pytest
 from tf_coil_coordinator import find_points, thick_check,tup_check
 
+
 @pytest.mark.dtype
 def test_input_coordinates():
-    answer = find_points(1,2,3)
+    with pytest.raises(ValueError):
+        find_points(1,2,3)
+
+@pytest.mark.dtype
+def test_input_coordinates():
+    answer = find_points(1, 2, 3)
     assert answer == "Invalid Input, coordinates must be in a tuple"
 
 @pytest.mark.dtype
 def test_input_thickness():
-    answer = find_points((0,0),(0,0),"asd")
+    answer = find_points((0, 0), (0, 0), "asd")
     assert answer == "Invalid Input, thickness must be an integer or a float"
 
 @pytest.mark.length
 def test_tuple_length():
-    answer = find_points((0,0,0),(0,0),0)
+    answer = find_points((0, 0, 0),(0, 0), 0)
     assert answer == "Input tuples must be 2 element long - coordinate on XZ plane"
 
 @pytest.mark.length
