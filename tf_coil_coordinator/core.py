@@ -13,10 +13,9 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
     """
 
     ### Check if input values are what they meant to be ###
-    if (tup_check(lower_inner_coordinates) or tup_check(mid_point_coordinates)) == False:
-        print("Wrong Data type, give coordinates in a tuple as X and Z coordinate pair")
-        return "Invalid Input, coordinates must be in a tuple"
-    
+    if tup_check(lower_inner_coordinates) == False or tup_check(mid_point_coordinates) == False:
+        raise TypeError("Invalid input - Coordinates must be a tuple")
+
     elif (thick_check(thickness)) == False:
         print("Wrong data type, thickness must be an integer or a float value")
         return "Invalid Input, thickness must be an integer or a float"
