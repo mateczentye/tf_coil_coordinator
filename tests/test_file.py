@@ -8,11 +8,6 @@ def test_input_coordinates():
         find_points(1,2,3)
 
 @pytest.mark.dtype
-def test_input_coordinates():
-    answer = find_points(1, 2, 3)
-    assert answer == "Invalid Input, coordinates must be in a tuple"
-
-@pytest.mark.dtype
 def test_input_thickness():
     answer = find_points((0, 0), (0, 0), "asd")
     assert answer == "Invalid Input, thickness must be an integer or a float"
