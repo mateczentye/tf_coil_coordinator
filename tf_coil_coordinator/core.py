@@ -2,6 +2,9 @@
 ### Find the points of verteces of the 2D profile of TF coil
 
 
+from _pytest.python_api import raises
+
+
 def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=False):
     """
 
@@ -24,7 +27,6 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
 
     elif lower_inner_coordinates[0] > mid_point_coordinates[0]:
         raise ValueError("The middle point's x-coordinate must be larger than the lower inner point's x-coordinate")
-
 
     else:
         lower_x, lower_z = lower_inner_coordinates
@@ -49,8 +51,44 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
         p9 = (p2[0],p2[1]-thickness)
         p10 = (lower_x,lower_z-thickness)
 
+        ### The inner curvature is scales as a function of the base length of the coil and its thickness
+        outter_curve_radius = (1 + (thickness/base_length))*thickness
+        inner_curve_radius = (thickness**2) / base_length 
+
+        ### New subroutines to calculate inner and outter curve mid-points, x and y displacement from existing points
+        # long shift does a sin(45)*radius of curvature amount of shift
+        # short shift does a (1-sin(45))*radius of curvature amount of shift
+        def shift_long(radius):
+            """ 
+            radius is the radius of curvature
+            """
+            return (2**0.5)*0.5*radius
+            
+        def shift_short(radius):
+            """ 
+            radius is the radius of curvature
+            """
+            return (2-(2**0.5))*0.5*radius
+        
+
+        p11 = (p2[0]-inner_curve_radius, p2[1])
+        p12 = (p11[0]+shift_long(inner_curve_radius),p11[1]+shift_short(inner_curve_radius))
+        p13 = (p2[0],p2[1]+inner_curve_radius)
+        p14 = (p3[0],p3[1]-inner_curve_radius)
+        p15 = (p14[0]-shift_short(inner_curve_radius),p14[1]+shift_long(inner_curve_radius))
+        p16 = (p3[0]-inner_curve_radius, p3[1])
+        p17 = (p6[0]-inner_curve_radius, p6[1])
+        p18 = (p17[0]+shift_long(outter_curve_radius), p17[1]-shift_short(outter_curve_radius))
+        p19 = (p14[0]+thickness,p14[1])
+        p20 = (p8[0],p8[1]+inner_curve_radius)
+        p21 = (p20[0]-shift_short(outter_curve_radius), p20[1]-shift_long(outter_curve_radius))
+        p22 = (p11[0], p11[1]-thickness)
+
+
+        print(inner_curve_radius,base_length,thickness,outter_curve_radius)
         ### List holding the points that are being returned by the function
-        points = [p1,p2,p3,p4,p5,p6,p7,p8,p9,p10]
+        #points = [p1,p2,p3,p4,p5,p6,p7,p8,p9,p10]
+        points = [p1,p11,p12,p13,p14,p15,p16,p4,p5,p17,p18,p20,p21,p22,p10]
 
         if test == True:
             print(points)
