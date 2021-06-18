@@ -5,7 +5,7 @@
 from _pytest.python_api import raises
 
 
-def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=False):
+def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=False,line_type=False):
     """
 
     lower_inner_coordinates must be a 2 element tuple
@@ -89,11 +89,20 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
         ### List holding the points that are being returned by the function
         #points = [p1,p2,p3,p4,p5,p6,p7,p8,p9,p10]
         points = [p1,p11,p12,p13,p14,p15,p16,p4,p5,p17,p18,p19,p20,p21,p22,p10]
+        tri_points = []
+        lines = ["straight"] + ['circle']*2 + ['straight'] + ['circle']*2 + ['straight']*3 + ['circle']*2 + ['straight'] + ['circle']*2 + ['straight']*2
+
+        for i in range(len(points)):
+            tri_points.append(points[i] + (lines[i],))
+
 
         if test == True:
-            print(points)
+            print(points,'\n',tri_points)
 
-        return points
+        if line_type == True:   
+            return tri_points
+        elif line_type == False:
+            return points
 
 def tup_check(tup):
     check = type(tup) == tuple
@@ -104,3 +113,5 @@ def thick_check(thickness):
     check = type(thickness) == float or type(thickness) == int
     #print(check)
     return check
+
+#find_points((50,0), (100,100), 20, test=True, line_type=True)
