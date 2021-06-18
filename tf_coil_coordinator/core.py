@@ -81,14 +81,14 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
         p18 = (p17[0]+shift_long(outter_curve_radius), p17[1]-shift_short(outter_curve_radius))
         p19 = (p14[0]+thickness,p14[1])
         p20 = (p8[0],p8[1]+inner_curve_radius)
-        p21 = (p20[0]-shift_short(outter_curve_radius), p20[1]-shift_long(outter_curve_radius))
+        p21 = (p18[0], p20[1]-shift_long(outter_curve_radius))
         p22 = (p11[0], p11[1]-thickness)
 
 
-        print(inner_curve_radius,base_length,thickness,outter_curve_radius)
+        #print(inner_curve_radius,base_length,thickness,outter_curve_radius)
         ### List holding the points that are being returned by the function
         #points = [p1,p2,p3,p4,p5,p6,p7,p8,p9,p10]
-        points = [p1,p11,p12,p13,p14,p15,p16,p4,p5,p17,p18,p20,p21,p22,p10]
+        points = [p1,p11,p12,p13,p14,p15,p16,p4,p5,p17,p18,p19,p20,p21,p22,p10]
 
         if test == True:
             print(points)
@@ -104,6 +104,3 @@ def thick_check(thickness):
     check = type(thickness) == float or type(thickness) == int
     #print(check)
     return check
-    
-
-#find_points((50,0), (100,100), 20, test=True)
