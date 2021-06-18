@@ -55,6 +55,9 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
         ### The inner curvature is scales as a function of the base length of the coil and its thickness as long as the thickness does not exceed the base length
 
         if thickness/base_length >= 1:
+            # if the thickness/base length ratio is larger or equal to 1
+            # it takes 10% of the thickness as the inner curve radius 
+            # this to avoid having coordinates before the previous or at the same spot as Paramak cannot compute it
             inner_curve_radius = thickness*0.1
             outter_curve_radius = thickness*1.1
         else:
