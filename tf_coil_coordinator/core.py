@@ -12,6 +12,7 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
     mid_point_coordinates must be a 2 elemenet tuple
     thickness must be a float or an int
     test=True will print the returned coordinates to console
+    line_type=True will return a 3 element tuple with line types for mixed shape paramak functions
 
     """
 
@@ -51,9 +52,14 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
         p9 = (p2[0],p2[1]-thickness)
         p10 = (lower_x,lower_z-thickness)
 
-        ### The inner curvature is scales as a function of the base length of the coil and its thickness
-        outter_curve_radius = (1 + (thickness/base_length))*thickness
-        inner_curve_radius = (thickness**2) / base_length 
+        ### The inner curvature is scales as a function of the base length of the coil and its thickness as long as the thickness does not exceed the base length
+
+        if thickness/base_length >= 1:
+            inner_curve_radius = thickness*0.1
+            outter_curve_radius = thickness*1.1
+        else:
+            outter_curve_radius = (1 + (thickness/base_length))*thickness
+            inner_curve_radius = (thickness**2) / base_length 
 
         ### New subroutines to calculate inner and outter curve mid-points, x and y displacement from existing points
         # long shift does a sin(45)*radius of curvature amount of shift
