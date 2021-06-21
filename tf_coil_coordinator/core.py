@@ -1,6 +1,12 @@
 
-### Find the verteces' coordinates of a TF coil, in a 2D profile on the XZ plane
-
+"""
+Find the coordinates for verteces of a TF coil, in a 2D profile on the XZ plane
+Run some checks for data validation
+The main function find_points() takes 3 positional arguments for the TF coil parameters,
+and takes two additional boolean arguments that are defaulted to False.
+test argument set to True prints to console the list which it returns
+line type argument sets the returned list to be populated by elements for MixedShape() function in the Paramak module
+"""
 
 from _pytest.python_api import raises
 
