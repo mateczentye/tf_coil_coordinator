@@ -1,5 +1,5 @@
 
-### Find the points of verteces of the 2D profile of TF coil
+### Find the verteces' coordinates of a TF coil, in a 2D profile on the XZ plane
 
 
 from _pytest.python_api import raises
