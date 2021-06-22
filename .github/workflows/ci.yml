@@ -1,4 +1,4 @@
-name: TF Coil Coordinator
+name: Pytest - CI
 
 on:
   pull_request:    
