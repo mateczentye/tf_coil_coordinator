@@ -129,4 +129,4 @@ def thick_check(thickness):
     #print(check)
     return check
 
-#find_points((50,0), (100,100), 20, test=True, line_type=True)
+find_points((50,0), (100,100), 20, test=True, line_type=True)
