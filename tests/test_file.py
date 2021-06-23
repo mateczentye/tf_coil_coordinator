@@ -1,6 +1,5 @@
 import pytest
-from tf_coil_coordinator import find_points, thick_check, tup_check, surface_area
-
+from tf_coil_coordinator import find_points, thick_check, tup_check
 
 
 @pytest.mark.dtype
