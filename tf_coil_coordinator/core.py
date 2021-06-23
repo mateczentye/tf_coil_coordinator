@@ -11,7 +11,7 @@ line type argument sets the returned list to be populated by elements for MixedS
 from _pytest.python_api import raises
 
 
-def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=False,line_type=False):
+def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=False,line_type=False,analyse=False):
     """
 
     lower_inner_coordinates must be a 2 element tuple
@@ -19,7 +19,7 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
     thickness must be a float or an int
     test=True will print the returned coordinates to console
     line_type=True will return a 3 element tuple with line types for mixed shape paramak functions
-
+    analyse=True will return values for volumetric and surface analysis for 3D parametric shape 
     """
 
     ### Check if input values are what they meant to be ###
@@ -114,11 +114,14 @@ def find_points(lower_inner_coordinates,mid_point_coordinates,thickness,test=Fal
         if test == True:
             print(points,'\n',tri_points)
 
-        if line_type == True:   
+        if analyse == True:
+            return [base_length,height,inner_curve_radius,outter_curve_radius]
+        elif line_type == True:   
             return tri_points
         elif line_type == False:
             return points
 
+        
 def tup_check(tup):
     check = type(tup) == tuple
     #print(check)
@@ -129,4 +132,6 @@ def thick_check(thickness):
     #print(check)
     return check
 
-find_points((50,0), (100,100), 20, test=True, line_type=True)
+if __name__ == "__main__":
+    print("For self test purposes: ")
+    find_points((50,0), (100,100), 20, test=True, line_type=True)
