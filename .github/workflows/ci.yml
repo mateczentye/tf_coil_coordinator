@@ -6,6 +6,7 @@ on:
     - develop  
     - main
   push:
+    branches:
     - develop
     - main
 
