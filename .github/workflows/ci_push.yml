@@ -1,10 +1,9 @@
 name: Pytest - CI
 
 on:
-  pull_request:    
+  push:
     branches:
-    - develop  
-    - main
+    - develop
 
 jobs:
   build:
