@@ -1,9 +1,9 @@
+pytest.importorskip('paramak')
+
 import tf_coil_coordinator
 import pytest
 from paramak import ExtrudeMixedShape
 from tf_coil_coordinator import find_points, surface_area, volume
-
-pytest.importorskip('paramak')
 
 @pytest.mark.skip
 def test_surface_area():
